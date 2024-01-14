@@ -1,0 +1,150 @@
+﻿@model FornecedoresModel
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Logistica</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d393dc2451.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            background-color: #1C1C1C;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .menu {
+            position: relative;
+            height: 650px;
+            width: 900px;
+            background-color: darkslategray;
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .Titulo {
+            margin-top: 40px;
+            margin-bottom: auto;
+            color: whitesmoke;
+            align-self: center;
+        }
+
+        .voltar {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+            .voltar i {
+                margin-right: 5px;
+            }
+
+        .cadastro {
+            background-color: aliceblue;
+            height: 490px;
+            width: 900px;
+        }
+
+        /* Adicionando o estilo para centralizar a placeholder e o texto digitado */
+        .form-control::placeholder,
+        .form-control {
+            text-align: center;
+        }
+
+        /* Adicionando o estilo para tornar a label em negrito */
+        .form-label {
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="menu">
+        <a role="button" class="btn btn-dark voltar" asp-controller="Home" asp-action="ListaFornecedores">
+            <i class="fas fa-arrow-left"></i> Voltar
+        </a>
+        <h1 class="Titulo">EDITAR O FORNECEDOR</h1>
+        <br />
+
+        <div class="cadastro text-center">
+
+            <br />
+            <form asp-controller="Home" asp-action="CFornecedoresAlterar" method="post">
+
+                <input type="hidden" asp-for="Id" />
+                <div class="row g-3 m-2">
+                    <div class="col-md-6">
+                        <label class="form-label">Nome do Fornecedor</label>
+                        <input type="text" asp-for="Nome" class="form-control" placeholder="Nome" aria-label="Nome">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">CNPJ do Fornecedor</label>
+                        <input type="text" asp-for="CNPJ" class="form-control" placeholder="CNPJ" aria-label="CNPJ">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">SITE do Fornecedor</label>
+                        <input type="text" asp-for="SITE" class="form-control" placeholder="SITE" aria-label="SITE">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">ENDEREÇO do Fornecedor</label>
+                        <input type="text" asp-for="ENDEREÇO" class="form-control" placeholder="ENDEREÇO" aria-label="ENDEREÇO">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">CEP do Fornecedor</label>
+                        <input type="text" asp-for="CEP" class="form-control" placeholder="CEP" aria-label="CEP">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Nome do Representante</label>
+                        <input type="text" asp-for="Representante" class="form-control" placeholder="Representante" aria-label="Representante">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Email do Fornecedor</label>
+                        <input type="text" asp-for="Email" class="form-control" placeholder="Email" aria-label="Email">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Contato do Fornecedor</label>
+                        <input type="text" asp-for="Contato" class="form-control" placeholder="Contato" aria-label="Contato">
+                    </div>
+                </div>
+
+                <br />
+
+                <button type="submit" class="btn btn-primary m-3">SALVAR EDIÇÃO</button>
+            </form>
+            <br />
+        </div>
+
+        <br />
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

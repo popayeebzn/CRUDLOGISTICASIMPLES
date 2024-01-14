@@ -1,0 +1,150 @@
+﻿@model List<MateriaisModel>
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Logistica</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d393dc2451.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            background-color: #1C1C1C;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .menu {
+            position: relative;
+            height: 650px;
+            width: 900px;
+            background-color: darkslategray;
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .Titulo {
+            margin-top: 40px;
+            margin-bottom: auto;
+            color: whitesmoke;
+            align-self: center;
+        }
+
+        .voltar {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+            .voltar i {
+                margin-right: 5px;
+            }
+
+        .cadastro {
+            background-color: aliceblue;
+            height: 490px;
+            width: 900px;
+        }
+
+        /* Adicionando o estilo para centralizar a placeholder e o texto digitado */
+        .form-control::placeholder,
+        .form-control {
+            text-align: center;
+        }
+
+        /* Adicionando o estilo para tornar a label em negrito */
+        .form-label {
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="menu">
+        <a role="button" class="btn btn-dark voltar" asp-controller="Home" asp-action="Index">
+            <i class="fas fa-arrow-left"></i> Voltar
+        </a>
+        <h1 class="Titulo">MOVIMENTAR ESTOQUE</h1>
+        <br />
+
+        <div class="cadastro text-center">
+            <br />
+
+            <div style="max-height: 400px; overflow-y: auto;">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nome do Material</th>
+                        <th>Quantidade</th>
+                        <th>Fornecedor</th>
+                        <th>Ações</th> <!-- Coluna para os botões de ação -->
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var material in Model)
+                    {
+                        <tr>
+                            <td>@material.Nome</td>
+                            <td>@material.Quantidade</td>
+                            <td>@(material.Fornecedor != null ? material.Fornecedor.Nome : "N/A")</td>
+                            <td class="d-flex justify-content-center align-items-center">
+                                <!-- Botões de ação -->
+                                <form asp-controller="Home" asp-action="AumentarQuantidade" method="post" class="mr-2">
+                                    <input type="hidden" name="materialId" value="@material.Id" />
+                                    <button type="submit" class="btn btn-success">+1</button>
+                                </form>
+
+                                <form asp-controller="Home" asp-action="DiminuirQuantidade" method="post" class="mr-2">
+                                    <input type="hidden" name="materialId" value="@material.Id" />
+                                    <button type="submit" class="btn btn-danger">-1</button>
+                                </form>
+
+                                <!-- Formulário para excluir o material -->
+                                <form asp-controller="Home" asp-action="ExcluirMaterial" method="post" onsubmit="return confirm('Tem certeza que deseja excluir este material?')">
+                                    <input type="hidden" name="materialId" value="@material.Id" />
+                                    <button type="submit" class="btn btn-warning">Apagar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+            </div>
+            
+            </div>
+
+            <br />
+        </div>
+
+        <br />
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
